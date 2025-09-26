@@ -8,8 +8,8 @@ The pipeline extracts raw trip data, transforms it to calculate useful metrics (
 
 Source datasets are publicly available:
 
-- **Bike Trips Data:** [Austin MetroBike Trips](https://data.austintexas.gov/Transportation-and-Mobility/Austin-MetroBike-Trips/tyfh-5r8s/about_data)
-- **Kiosk Locations:** [Austin MetroBike Kiosk Locations](https://data.austintexas.gov/Transportation-and-Mobility/Austin-MetroBike-Kiosk-Locations/qd73-bsdg/about_data)
+- **Bike Trips Data:** [Austin MetroBike Trips](https://data.austintexas.gov/api/views/tyfh-5r8s/rows.csv?fourfour=tyfh-5r8s&cacheBust=1744129742&date=20250926&accessType=DOWNLOAD)
+- **Kiosk Locations:** [Austin MetroBike Kiosk Locations](https://data.austintexas.gov/api/views/qd73-bsdg/rows.csv?fourfour=qd73-bsdg&cacheBust=1745520602&date=20250926&accessType=DOWNLOAD)
 
 ---
 
@@ -31,8 +31,7 @@ Source datasets are publicly available:
 
 ### 📌 Logical Design
 
-[Logical Design](./images/AustinTripsLogicalDesign.jpg)
-[Drawn on DBDiagram](https://dbdiagram.io/)
+[Logical Design](./images/AustinTripsLogicalDesign.jpg)  -  [Drawn on DBDiagram](https://dbdiagram.io/)
 
 ## Project Architecture
 
@@ -85,5 +84,8 @@ docker compose run --rm spark bash -c "/app/etl/run_etl.sh"
 
 Grafana can be accessed through your browser at `http://localhost:3000` (default credentials: `admin` / `admin`).
 
----
+[S&BType Dashboard](./images/AustinTripsSubAndTypeDashboard.jpg)
 
+[Timely Dashboard](./images/AustinTripsTimelyDashboard.jpg)
+
+---

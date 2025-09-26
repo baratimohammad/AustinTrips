@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+
+  spark:
+    build:
+      context: .
+      dockerfile: spark/Dockerfile
+    container_name: spark
+    volumes:
+      - ./data:/app/data
+      - ./etl:/app/etl
+      - ./jars:/opt/spark/jars
+    networks:
+      - etl_network
+
+  postgres:
+    build: ./postgres
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - etl_network
+
+  grafana:
+    build: ./grafana
+    container_name: grafana
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - etl_network
+
+networks:
+  etl_network:
+
+volumes:
+  postgres_data:
+  grafana_data:

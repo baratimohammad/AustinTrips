@@ -88,4 +88,15 @@ Grafana can be accessed through your browser at `http://localhost:3000` (default
 
 [Timely Dashboard](./images/AustinTripsTimelyDashboard.jpg)
 
+### 7️⃣ Load Grafana Dashboards from Backup
+
+This project includes pre-configured Grafana dashboards and provisioning files stored in `./grafana_backup`.
+
+To restore dashboards manually:
+
+```bash
+# Copy backup files into the Grafana container
+docker cp ./grafana_backup/grafana.db grafana:/var/lib/grafana/grafana.db
+docker cp ./grafana_backup/provisioning grafana:/etc/grafana/provisioning
+
 ---

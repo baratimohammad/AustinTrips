@@ -27,17 +27,17 @@ Source datasets are publicly available:
 
 ### 📌 Schematic Design
 
-[Conceptual Design](./images/AustinTripsCoceptualDesign.jpg)
+![Conceptual Design](./images/AustinTripsCoceptualDesign.jpg)
 
 ### 📌 Logical Design
 
-[Logical Design](./images/AustinTripsLogicalDesign.jpg)  -  [Drawn on DBDiagram](https://dbdiagram.io/)
+![Logical Design](./images/AustinTripsLogicalDesign.jpg)  -  [Drawn on DBDiagram](https://dbdiagram.io/)
 
 ## Project Architecture
 
 Below is a high-level architecture of the ETL pipeline:
 
-[High-level Architecture](./images/AustinTripsETLHighLevelArchitecture.png)
+![High-level Architecture](./images/AustinTripsETLHighLevelArchitecture.png)
 
 This diagram shows the technical workflow:
 
@@ -86,9 +86,9 @@ docker compose run --rm spark bash -c "/app/etl/run_etl.sh"
 
 Grafana can be accessed through your browser at `http://localhost:3000` (default credentials: `admin` / `admin`).
 
-[S&BType Dashboard](./images/AustinTripsSubAndTypeDashboard.jpg)
+![S&BType Dashboard](./images/AustinTripsSubAndTypeDashboard.jpg)
 
-[Timely Dashboard](./images/AustinTripsTimelyDashboard.jpg)
+![Timely Dashboard](./images/AustinTripsTimelyDashboard.jpg)
 
 ### 7️⃣ Load Grafana Dashboards from Backup
 

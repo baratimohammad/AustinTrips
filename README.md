@@ -36,7 +36,7 @@ Source datasets are publicly available:
 ## Project Architecture
 
 Below is a high-level architecture of the ETL pipeline:
-
+[High-level Architecture](./images/AustinTripsETLHighLevelArchitecture.png)
 This diagram shows the technical workflow:
 
 - **Data Acquisition:** Automated via `run_etl.sh`, raw datasets are loaded into `data/raw`.

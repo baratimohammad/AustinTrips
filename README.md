@@ -17,7 +17,7 @@ Source datasets are publicly available:
 
 - **Trips by Start Kiosk:** Total trips per kiosk aggregated by day of week, month, and year.
 - **Demand Distribution Over Time:** Hourly trips segmented by day of week, month, and year.
-- **Geospatial Analysis of Stations:** Identify and visualize top 5 kiosks by number of trips per day of week and month.
+- **Geospatial Analysis of Stations:** Identify and visualize top 20 kiosks by number of trips per day of week and month.
 - **Trips by Subscription Type:** Total trips made by each membership/pass type.
 - **Trips by Vehicle Type:** Total trips by bike type (Classic vs. Electric).
 

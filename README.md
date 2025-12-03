@@ -61,7 +61,8 @@ wget -O ./jars/postgresql-42.6.0.jar https://jdbc.postgresql.org/download/postgr
 ### 2️⃣ Make ETL Script Executable
 
 ```bash
-chmod +x run_etl.sh
+cd /root/01_TransportDashboard/AustinTrips
+chmod +x etl/run_etl.sh
 ```
 
 ### 3️⃣ Build Docker Images
@@ -84,7 +85,7 @@ docker compose run --rm spark bash -c "/app/etl/run_etl.sh"
 
 ### 6️⃣ Open Grafana Container
 
-Grafana can be accessed through your browser at `http://localhost:3000` (default credentials: `admin` / `admin`).
+Grafana can be accessed through your browser at `http://localhost:3000`. Anonymous users now have Viewer access by default, so dashboards load without signing in. Embedding is enabled for iframes. Log in with `admin` / `admin` (or the credentials you set) to make changes.
 
 ![S&BType Dashboard](./images/AustinTripsSubAndTypeDashboard.jpg)
 

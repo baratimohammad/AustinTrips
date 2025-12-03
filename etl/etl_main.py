@@ -1,3 +1,5 @@
+import os
+
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, hour, minute, dayofweek, weekofyear, month, year, concat_ws, to_timestamp, to_date, split, trim, regexp_replace, round, date_format
 from pyspark.sql.window import Window
@@ -5,10 +7,14 @@ from pyspark.sql.types import IntegerType, DoubleType
 from pyspark.sql import functions as F
 
 # -----------------------------
-# 1️⃣ Spark session
+# 1️⃣ Spark session and config
 # -----------------------------
-spark = SparkSession.builder.appName("AustinTripsETL").config("spark.jars", "/opt/spark/jars/postgresql-42.6.0.jar") \
+postgres_jar = os.getenv("POSTGRES_JAR", "/app/jars/postgresql-42.6.0.jar")
+spark = (
+    SparkSession.builder.appName("AustinTripsETL")
+    .config("spark.jars", postgres_jar)
     .getOrCreate()
+)
 
 # -----------------------------
 # 2️⃣ Load Trips & Kiosk CSVs
@@ -111,12 +117,18 @@ fact_df = fact_df.groupBy("TID", "DID", "Checkout Kiosk ID", "JID") \
 # -----------------------------
 # 8️⃣ Write to Postgres
 # -----------------------------
+db_user = os.getenv("POSTGRES_USER", "admin")
+db_password = os.getenv("POSTGRES_PASSWORD", "secret")
+db_name = os.getenv("POSTGRES_DB", "mydb")
+db_host = os.getenv("POSTGRES_HOST", "postgres")
+db_port = os.getenv("POSTGRES_PORT", "5432")
+
 props = {
-    "user": "admin",
-    "password": "secret",
-    "driver": "org.postgresql.Driver"
+    "user": db_user,
+    "password": db_password,
+    "driver": "org.postgresql.Driver",
 }
-jdbc_url = "jdbc:postgresql://postgres:5432/mydb"
+jdbc_url = f"jdbc:postgresql://{db_host}:{db_port}/{db_name}"
 
 dim_time.write.jdbc(url=jdbc_url, table="dim_time", mode="overwrite", properties=props)
 dim_date.write.jdbc(url=jdbc_url, table="dim_date", mode="overwrite", properties=props)
@@ -129,4 +141,3 @@ df.select("Checkout Datetime", "Checkout Date", "Hour", "Minute", "DayOfWeek").s
 
 spark.stop()
 print("ETL completed successfully without any errors!!")
-

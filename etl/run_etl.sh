@@ -2,8 +2,8 @@
 
 #!/bin/bash
 
-# Add Spark to PATH
-export PATH=/opt/bitnami/spark/bin:$PATH
+# Add Spark to PATH (official image path)
+export PATH=/opt/spark/bin:$PATH
 
 # 1. Download raw CSV
 mkdir -p data/raw
@@ -23,16 +23,12 @@ else
 fi
 
 
-# 3. Download PostgreSQL JDBC driver if missing
-JAR_PATH="/opt/spark/jars/postgresql-42.6.0.jar"
+# 3. Download PostgreSQL JDBC driver if missing (keep Spark's bundled jars intact)
+JAR_PATH="/app/jars/postgresql-42.6.0.jar"
 if [ ! -f "$JAR_PATH" ]; then
-    mkdir -p /opt/spark/jars
+    mkdir -p /app/jars
     wget -O "$JAR_PATH" https://jdbc.postgresql.org/download/postgresql-42.6.0.jar
 fi
 
-# 4. Export SPARK_JARS so Spark can find the driver
-export SPARK_JARS="$JAR_PATH"
-
-# 5. Run Spark ETL
+# 4. Run Spark ETL
 spark-submit --jars "$JAR_PATH" /app/etl/etl_main.py
-
